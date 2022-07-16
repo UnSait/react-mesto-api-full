@@ -38,10 +38,6 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    handleSignInProfileToken();
-  }, [])
-
-  React.useEffect(() => {
     handleSignInProfileToken()
     Promise.all([api.getProfile(token), api.getInitialCards(token)])
     .then(([user, cards]) => {
@@ -80,8 +76,8 @@ function App() {
     setSelectedCard({ isOpen: false });
   }
 
-  function handleUpdateUser(data, token) {
-    api.editProfile(data.name, data.about, token)
+  function handleUpdateUser(data) {
+    api.editProfile(data, token)
     .then((res) => {
       setCurrentUser(res);
       handleCloseAllPopups();
@@ -89,8 +85,7 @@ function App() {
     .catch(err => console.log("Не удалось выполнить:", err));
   }
 
-  function handleUpdateAvatar({avatar, token}) {
-    console.log(avatar, token)
+  function handleUpdateAvatar({avatar}) {
     api.getAvatar(avatar, token)
     .then((res) => {
       setCurrentUser(res);
@@ -99,8 +94,8 @@ function App() {
     .catch(err => console.log("Не удалось выполнить:", err));
   }
 
-  function handleAddPlaceSubmit({name, link, token}) {
-    api.addCard(name, link, token)
+  function handleAddPlaceSubmit(data) {
+    api.addCard(data, token)
     .then((newCard) => {
       setCards([newCard, ...cards]);
       handleCloseAllPopups();
@@ -108,7 +103,7 @@ function App() {
     .catch(err => console.log("Не удалось выполнить:", err));
   }
 
-  function handleCardLike(card, token) {
+  function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked, token)
@@ -118,7 +113,7 @@ function App() {
     .catch(err => console.log("Не удалось выполнить:", err))
   }
 
-  function handleCardDelete(card, token) {
+  function handleCardDelete(card) {
     api.deleteCard(card._id, token)
     .then(() => {
       setCards(cards.filter(c => c._id !== card._id));
@@ -149,7 +144,7 @@ function App() {
     auth.authorize({password, email})
     .then((res) => {
       localStorage.setItem('jwt', JSON.stringify(res.token));
-      setToken(res.token);
+        setToken(res.token);
       setUserMail(email);
       setLoggedIn(true);
       history.push("/profile");
@@ -161,13 +156,13 @@ function App() {
 
   function handleSignInProfileToken() {
     if (localStorage.getItem("jwt")) {
-      const token = JSON.parse(localStorage.getItem("jwt"));
-      auth.checkToken(token)
+      const token1 = JSON.parse(localStorage.getItem("jwt"));
+      auth.checkToken(token1)
         .then((res) => {
           setLoggedIn(true);
-          setToken(token);
-          history.push("/profile");
+          setToken(token1);
           setUserMail(res.data.email);
+          history.push("/profile");
         })
         .catch(() => {
           console.log("Необходимо авторизоваться")
@@ -176,8 +171,8 @@ function App() {
   }
 
   function handleSignOutProfile() {
-    setLoggedIn(false)
-    localStorage.removeItem('jwt')
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
     setToken('');
     history.push('/signin')
   }
