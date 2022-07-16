@@ -1,0 +1,10 @@
+.auth-window__title {
+  margin: 0;
+  font-weight: 900;
+}
+
+@media screen and (max-width: 879px) {
+  .auth-window__title {
+    font-size: 20px;
+  }
+}

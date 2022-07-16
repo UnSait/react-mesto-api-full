@@ -1,0 +1,6 @@
+.header-auth {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  z-index: 1000;
+}

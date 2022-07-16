@@ -1,0 +1,13 @@
+.auth-window {
+  width: 358px;
+  margin: auto;
+  margin-top: 60px;
+  text-align: center;
+}
+
+@media screen and (max-width: 879px) {
+  .auth-window {
+    width: 260px;
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,15 @@
+.header-auth__btn {
+  transition: 0.5s;
+  font-weight: 400;
+  margin-left: 24px;
+  background: none;
+  color: white;
+  border: 0;
+  padding: 0;
+}
+
+.header-auth__btn:hover {
+  opacity: 0.85;
+  transition: 0.5s;
+  cursor: pointer;
+}

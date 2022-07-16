@@ -1,0 +1,14 @@
+.popup__input-text-error {
+  color: rgba(255, 0, 0, 1);
+  font-size: 12px;
+  line-height: 14.52px;
+  width: 358px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 879px) {
+  .popup__input-text-error {
+    width: 238px;
+  }
+}

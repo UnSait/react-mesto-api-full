@@ -1,0 +1,30 @@
+.popup__sumbit {
+  background-color: black;
+  margin: 0 auto;
+  margin-top: 48px;
+  margin-bottom: 37px;
+  color: white;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 22px;
+  transition: 0.5s;
+  border: none;
+}
+
+.popup__sumbit:hover {
+  opacity: 0.8;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 879px) {
+  .popup__sumbit {
+    margin-top: 45px;
+    margin-bottom: 25px;
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

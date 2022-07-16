@@ -1,0 +1,23 @@
+.auth-window__input {
+  padding: 0;
+  margin-top: 50px;
+  border: 0;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  color: rgba(204, 204, 204, 1);
+  width: 358px;
+  height: 27px;
+  background: none;
+  font-size: 14px;
+}
+
+.auth-window__input:nth-child(3) {
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 879px) {
+  .auth-window__input {
+    margin-top: 40px;
+    width: 260px;
+  }
+}
+

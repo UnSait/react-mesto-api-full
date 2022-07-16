@@ -1,0 +1,12 @@
+.auth-window__redirect {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: 0.5s;
+}
+
+.auth-window__redirect:hover {
+  opacity: 0.8;
+  transition: 0.5s;
+  cursor: pointer;
+}

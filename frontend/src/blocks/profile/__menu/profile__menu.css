@@ -1,0 +1,9 @@
+.profile__menu {
+  display: flex;
+}
+
+@media screen and (max-width: 879px) {
+  .profile__menu {
+  flex-direction: column;
+  }
+}
