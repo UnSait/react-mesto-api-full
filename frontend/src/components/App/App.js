@@ -33,7 +33,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({name: 'Жак-Ив Кусто', about: 'Исследователь океана', avatar: avatar});
   const [userMail, setUserMail] = React.useState('');
   const [cards, setCards] = React.useState([]);
-  const [token, setToken] = React.useState('');
+  const [token, setToken] = React.useState(localStorage.jwt);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const history = useHistory();
 
@@ -45,7 +45,7 @@ function App() {
       setCards(cards);
     })
     .catch(err => console.log("Не удалось загрузить:", err));
-  }, [])
+  }, [loggedIn])
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -104,7 +104,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked, token)
     .then(newCard => {
@@ -143,8 +143,8 @@ function App() {
   function handleLoginProfile({password, email}) {
     auth.authorize({password, email})
     .then((res) => {
-      localStorage.setItem('jwt', JSON.stringify(res.token));
-        setToken(res.token);
+      localStorage.setItem('jwt', res.token);
+      setToken(res.token);
       setUserMail(email);
       setLoggedIn(true);
       history.push("/profile");
@@ -156,12 +156,9 @@ function App() {
 
   function handleSignInProfileToken() {
     if (localStorage.getItem("jwt")) {
-      const token1 = JSON.parse(localStorage.getItem("jwt"));
-      auth.checkToken(token1)
-        .then((res) => {
+      auth.checkToken(token)
+        .then(() => {
           setLoggedIn(true);
-          setToken(token1);
-          setUserMail(res.data.email);
           history.push("/profile");
         })
         .catch(() => {
