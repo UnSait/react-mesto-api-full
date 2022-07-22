@@ -1,5 +1,5 @@
 const allowedCors = [
-  'http://mesto.full.nomoredomains.xyz',
+  'https://mesto.full.nomoredomains.xyz',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
